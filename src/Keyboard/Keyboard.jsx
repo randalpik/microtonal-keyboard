@@ -5,19 +5,24 @@ import Key from './Key/Key.jsx';
 
 import keys from './keys.js';
 
+const lowestOctave = 2;
+const octaves = 3;
+
 const Keyboard = () => {
   return (
     <Stage>
       {
-        keys.map((row, index) => (
-          row.map((key, i) => (
-            <Key
-              key={key.label}
-              keyboardKey={key}
-              row={index}
-              col={i}
-              octave={3}
-            />
+        [...Array(octaves).keys()].map((octave) => (
+          keys.map((row, index) => (
+            row.map((key, i) => (
+              <Key
+                key={key.label}
+                keyboardKey={key}
+                row={index}
+                col={i}
+                octave={octave + lowestOctave}
+              />
+            ))
           ))
         ))
       }

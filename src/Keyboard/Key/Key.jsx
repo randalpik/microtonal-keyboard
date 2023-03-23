@@ -28,18 +28,18 @@ const Key = (props) => {
 
   const hz = g0 * (2 ** octave) * ratio;
 
-  const { start, stop, toggle } = useFrequency({
+  const { start, stop, toggle, playing } = useFrequency({
     hz,
     gain: 0.5,
   });
 
-  let x = col * keyWidth;
+  let x = ((octave - 1.6) * 7 + col) * keyWidth;
   if (row < 2) x += (keyWidth / 2);
-  let y = row * keyHeight;
+  let y = (row + 1) * keyHeight;
 
   const drawKey = useCallback((g) => draw(
-    g, keyWidth, keyHeight, color
-  ), [color]);
+    g, keyWidth, keyHeight, color, playing
+  ), [color, playing]);
 
   return (
     <Graphics

@@ -5,9 +5,11 @@ export const draw = (
   width,
   height,
   color,
+  playing,
 ) => {
+  const opacity = playing ? 0.7 : 1;
   g.clear();
-  g.beginFill(color);
+  g.beginFill(color, opacity);
   g.lineStyle(2, borderColor);
   g.drawRect(0, 0, width, height);
   g.endFill();
