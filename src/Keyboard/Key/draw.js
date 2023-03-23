@@ -6,7 +6,6 @@ export const draw = (
   height,
   color,
 ) => {
-  console.log('drawing');
   g.clear();
   g.beginFill(color);
   g.lineStyle(2, borderColor);

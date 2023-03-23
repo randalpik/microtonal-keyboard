@@ -16,6 +16,7 @@ const Keyboard = () => {
               keyboardKey={key}
               row={index}
               col={i}
+              octave={3}
             />
           ))
         ))
