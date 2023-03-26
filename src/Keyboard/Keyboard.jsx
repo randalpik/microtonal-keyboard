@@ -4,9 +4,12 @@ import { Stage } from '@pixi/react';
 import Key from './Key/Key.jsx';
 
 import keys from './keys.js';
+import layout from './layout.js';
 
 const lowestOctave = 2;
 const octaves = 3;
+
+const colOffset = 7;
 
 const Keyboard = () => {
   return (
@@ -18,6 +21,7 @@ const Keyboard = () => {
               <Key
                 key={key.label}
                 keyboardKey={key}
+                layoutKey={layout[index][(octave * 7 + i) - colOffset]}
                 row={index}
                 col={i}
                 octave={octave + lowestOctave}

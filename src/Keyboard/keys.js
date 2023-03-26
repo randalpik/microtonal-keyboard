@@ -6,6 +6,13 @@ const black = 0x111111;
 const keys = [
   [
     {
+      label: 'G♭',
+      name: 'diminished octave',
+      ratio: 24 / 25,
+      color: black,
+      textColor: white,
+    },
+    {
       label: 'A♭',
       name: 'minor second',
       ratio: 16 / 15,
@@ -47,15 +54,15 @@ const keys = [
       color: red,
       textColor: black,
     },
+  ],
+  [
     {
-      label: 'G♭',
-      name: 'diminished octave',
-      ratio: 48 / 25,
+      label: 'F♯',
+      name: 'major seventh',
+      ratio: 15 / 16,
       color: black,
       textColor: white,
     },
-  ],
-  [
     {
       label: 'G♯',
       name: 'augmented unison',
@@ -97,13 +104,6 @@ const keys = [
       ratio: 225 / 128,
       color: white,
       textColor: black,
-    },
-    {
-      label: 'F♯',
-      name: 'major seventh',
-      ratio: 15 / 8,
-      color: black,
-      textColor: white,
     },
   ],
   [

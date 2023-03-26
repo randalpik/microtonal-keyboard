@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { Graphics, Text } from '@pixi/react';
 import { Rectangle } from 'pixi.js';
 
@@ -15,6 +15,7 @@ const g0 = a4 / 18; // 4 octaves and 1 major second below A4
 const Key = (props) => {
   const {
     keyboardKey,
+    layoutKey,
     row,
     col,
     octave,
@@ -30,12 +31,35 @@ const Key = (props) => {
 
   const { start, stop, toggle, playing } = useFrequency({
     hz,
-    gain: 0.5,
+    gain: 0.2,
+    oscillator: 'square',
   });
 
   let x = ((octave - 1.6) * 7 + col) * keyWidth;
-  if (row < 2) x += (keyWidth / 2);
+  if (row > 1) x += (keyWidth / 2);
   let y = (row + 1) * keyHeight;
+
+  const onKeyDown = useCallback((evt) => {
+    if (evt.keyCode === layoutKey) {
+      start();
+    }
+  }, [layoutKey, start]);
+
+  const onKeyUp = useCallback((evt) => {
+    if (evt.keyCode === layoutKey) {
+      stop();
+    }
+  }, [layoutKey, stop]);
+
+  useEffect(() => {
+    document.addEventListener('keydown', onKeyDown);
+    document.addEventListener('keyup', onKeyUp);
+
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      document.removeEventListener('keyup', onKeyUp);
+    }
+  }, [onKeyDown, onKeyUp]);
 
   const drawKey = useCallback((g) => draw(
     g, keyWidth, keyHeight, color, playing
@@ -47,8 +71,6 @@ const Key = (props) => {
       position={[x, y]}
       interactive
       pointerdown={toggle}
-      // pointerup={stop}
-      // pointerupoutside={stop}
       hitArea={new Rectangle(0, 0, keyWidth, keyHeight)}
     >
       <Text
