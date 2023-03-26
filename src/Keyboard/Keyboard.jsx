@@ -13,7 +13,11 @@ const colOffset = 7;
 
 const Keyboard = () => {
   return (
-    <Stage>
+    <Stage
+      options={{
+        backgroundColor: 0x282c34,
+      }}
+    >
       {
         [...Array(octaves).keys()].map((octave) => (
           keys.map((row, index) => (

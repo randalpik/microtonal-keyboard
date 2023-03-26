@@ -7,10 +7,14 @@ export const draw = (
   color,
   playing,
 ) => {
-  const opacity = playing ? 0.7 : 1;
   g.clear();
-  g.beginFill(color, opacity);
+  g.beginFill(color);
   g.lineStyle(2, borderColor);
   g.drawRect(0, 0, width, height);
   g.endFill();
+  if (playing) {
+    g.beginFill(borderColor, 0.4);
+    g.drawRect(0, 0, width, height);
+    g.endFill();
+  }
 };
